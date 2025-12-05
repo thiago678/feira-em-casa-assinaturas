@@ -4,24 +4,12 @@ public class PagamentoService {
 
     public Pagamento processarPagamento(Cartao cartao, BigDecimal valor) {
 
-        // Apenas simulação de aprovação automática
-        boolean aprovado = validarCartao(cartao) && valor.compareTo(BigDecimal.ZERO) > 0;
+        Pagamento pagamento = new Pagamento(1L, valor, cartao);
 
-        if (aprovarPagamentoMock()) {
-            return new Pagamento(1L, valor, Pagamento.StatusPagamento.APROVADO);
-        } else {
-            return new Pagamento(1L, valor, Pagamento.StatusPagamento.REPROVADO);
-        }
-    }
+        // Aqui poderia ter validação real de cartão.
+        // Para o projeto, vamos assumir que sempre aprova:
+        pagamento.aprovar();
 
-    private boolean validarCartao(Cartao cartao) {
-        return cartao != null
-                && cartao.getNumero().length() >= 12
-                && cartao.getNomeTitular() != null;
-    }
-
-    private boolean aprovarPagamentoMock() {
-        // 100% aprovado para fins de projeto
-        return true;
+        return pagamento;
     }
 }

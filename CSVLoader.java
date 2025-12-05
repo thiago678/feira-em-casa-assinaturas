@@ -66,8 +66,8 @@ public class CSVLoader {
                     tipo = TipoProduto.VERDURA;
                 }
 
-                Produto produto = new Produto(id, nome, tipo);
-                produtos.add(produto);
+                Produto p = new Produto(id, nome, tipo);
+                produtos.add(p);
             }
 
         } catch (IOException e) {
